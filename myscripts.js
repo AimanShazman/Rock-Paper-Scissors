@@ -9,13 +9,15 @@ function getComputerChoice() {
     } else if (computerSelection === 3) {
         return 'scissors';
     } else {
-        return false;
+        return;
     }
 }
 
 //get user choice (Rock/Paper/Scissors)
 let playerSelection = prompt("Choose either Rock, Paper or Scissors: ").toLowerCase();
-
+if (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors') {
+    throw Error('Invalid Input!\n');
+}
 
 //get computer choice
 let computerSelection = getComputerChoice();
