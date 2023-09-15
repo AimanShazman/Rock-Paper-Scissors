@@ -1,7 +1,12 @@
 //get computer choice (Rock/Paper/Scissors)
 function getComputerChoice() {
-    let choice = Math.ceil(Math.random()*3);
-    console.log(choice);
+    let computerSelection = Math.ceil(Math.random()*3);
+    console.log(computerSelection);
 }
 
-getComputerChoice();
+//get user choice (Rock/Paper/Scissors)
+let playerSelection = prompt("Choose either Rock, Paper or Scissors: ").toLowerCase();
+
+//play round
+
+//display marks
