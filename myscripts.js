@@ -9,7 +9,7 @@ function getComputerChoice() {
     } else if (computerSelection === 3) {
         return 'scissors';
     } else {
-        return;
+        return false;
     }
 }
 
@@ -22,7 +22,7 @@ if (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection
 //get computer choice
 let computerSelection = getComputerChoice();
 if (!computerSelection) {
-    Error('Cannot get computer selection!\n');
+    throw Error('Cannot get computer selection!\n');
 }
 
 //play round
