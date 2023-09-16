@@ -52,13 +52,13 @@ function game() {
     let playerPoints = 0;
     let compPoints = 0;
     let temp;
+    let countRound = 1;
 
     for (let i = 0; i < 5; i++) {
         //get user choice (Rock/Paper/Scissors)
-        playerSelection = prompt("Choose either Rock, Paper or Scissors: ").toLowerCase();
-        if (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors') {
-            throw Error('Invalid Input!\n');
-        }
+        do {
+            playerSelection = prompt("Choose either Rock, Paper or Scissors: ").toLowerCase();
+        } while (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors');
 
         //get computer choice
         computerSelection = getComputerChoice();
@@ -70,19 +70,20 @@ function game() {
 
         //add points 
         if (temp === 'tie') {
-            console.log("It's a Tie!");
+            console.log(`Round ${countRound}: It's a Tie!`);
         } else if (temp === 'player') {
-            console.log(`You Win! ${playerSelection} beats ${computerSelection}\n`);
+            console.log(`Round ${countRound}: You Win! ${playerSelection} beats ${computerSelection}\n`);
             playerPoints++;
         } else if (temp === 'comp') {
-            console.log(`You Lose! ${playerSelection} is defeated by ${computerSelection}\n`);
+            console.log(`Round ${countRound}: You Lose! ${playerSelection} is defeated by ${computerSelection}\n`);
             compPoints++;
         }
+        countRound++;
     }
 
     //after 5 times, display winner
     if (playerPoints === compPoints) {
-        console.log("It's a Tie!");
+        console.log(`It's a Tie! ${playerPoints}-${compPoints}`);
     } else if (playerPoints > compPoints) {
         console.log(`Game Ended: You Win! ${playerPoints}-${compPoints}`);
     } else if (compPoints > playerPoints) {
@@ -91,4 +92,5 @@ function game() {
     return;
 }
 
+console.log("Let's play 5 rounds of Rock Paper Scissors!");
 game();
