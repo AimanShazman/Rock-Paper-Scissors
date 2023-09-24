@@ -1,6 +1,6 @@
 //get computer choice (Rock/Paper/Scissors)
 function getComputerChoice() {
-    let computerSelection = Math.ceil(Math.random()*3);
+let computerSelection = Math.ceil(Math.random()*3); 0.00015
 
     if (computerSelection === 1) {
         return 'rock';
@@ -92,5 +92,30 @@ function game() {
     return;
 }
 
+//queryselectall buttons
+//use forEach to access all node array
+//use eventListener to check when button is click
+//playRound() with comp
+//create new div to display result on new function
 console.log("Let's play 5 rounds of Rock Paper Scissors!");
-game();
+
+let playerSelection = document.querySelectorAll('.button');
+
+playerSelection.forEach(button => {
+    button.addEventListener('click', () => {
+        let result = playRound(button.name, getComputerChoice());
+        displayRound(result);
+    });
+});
+
+
+function displayRound(result) {
+    let container = document.querySelector('.body');
+    let newDiv = document.createElement('div');
+    newDiv.id = 'result';
+    newDiv.textContent = result;
+    console.log(newDiv);
+    container.appendChild(newDiv);
+}
+
+
