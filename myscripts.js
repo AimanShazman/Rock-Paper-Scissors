@@ -120,21 +120,15 @@ let countRound = 1;
 let playerScore = 0;
 let compScore = 0;
 
-console.log("Let's play 5 rounds of Rock Paper Scissors!");
+main();
 
-rockButton.addEventListener('click', () => {
-    const playerSelection = rockButton.name;
-    game(playerSelection);
-});
+function main() {
+    console.log("Let's play 5 rounds of Rock Paper Scissors!");
 
-paperButton.addEventListener('click', () => {
-    const playerSelection = paperButton.name;
-    game(playerSelection);
-});
-scissorsButton.addEventListener('click', () => {
-    const playerSelection = scissorsButton.name;
-    game(playerSelection);
-});
+    rockButton.addEventListener('click', () => game("rock"));
+    paperButton.addEventListener('click', () => game("paper"));
+    scissorsButton.addEventListener('click', () => game("scissors"));
+}
 
 function game(playerSelection) {
     let computerSelection;
@@ -155,24 +149,24 @@ function game(playerSelection) {
     //update Round
     updateRound();
 
-    //after collect 5 points, end game
-    if (playerScore === 5 || compScore === 5) {
-        gameFinish();
-    }
-
 }
 
-function gameFinish() {
+// function gameFinish() {
     
-    const resultContainer = document.querySelector('.result');
+//     const resultContainer = document.querySelector('.result');
 
-    if (playerScore === 5) {
-        resultContainer.innerHTML = 'Game Ended! You Win!';
-    } else if (compScore === 5) {
-        resultContainer.innerHTML = 'Game Ended! You Lose!';
-    }
+//     if (playerScore === 5) {
+//         resultContainer.innerHTML = 'Game Ended! You Win!';
+//     } else if (compScore === 5) {
+//         resultContainer.innerHTML = 'Game Ended! You Lose!';
+//     }
+
+//     rockButton.removeEventListener('click', () => {
+//         const playerSelection = rockButton.name;
+//         game(playerSelection);
+//     });
     
-}
+// }
 
 function updateScore(result, playerSelection, computerSelection) {
     const playerScoreContainer = document.querySelector('.playerScore');
