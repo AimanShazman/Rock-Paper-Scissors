@@ -1,6 +1,5 @@
-//get computer choice (Rock/Paper/Scissors)
 function getComputerChoice() {
-let computerSelection = Math.ceil(Math.random()*3); 0.00015
+    let computerSelection = Math.ceil(Math.random()*3); 0.00015
 
     if (computerSelection === 1) {
         return 'rock';
@@ -46,68 +45,146 @@ function playRound(playerSelection, computerSelection, result) {
     return result;
 }
 
-function game() {
-    let playerSelection;
+// function game() {
+//     let playerSelection;
+//     let computerSelection;
+//     let playerPoints = 0;
+//     let compPoints = 0;
+//     let temp = 0;
+//     let countRound = 1;
+
+//     for (let i = 0; i < 5; i++) {
+
+//         //listen button click for rock, paper, scissors individually
+//         //get comp selection
+//         //playRound()
+//         //display each round result
+//         //round++
+//         //after 5 rounds,
+//         //display final result
+
+
+//         playerSelection.forEach(button => {
+//             // console.log(button.name);
+//             button.addEventListener('click', () => {
+//                 temp = button.name
+//             });
+//         });
+
+//         console.log(temp);
+
+//         // //get computer selection
+//         // computerSelection = getComputerChoice();
+//         // if (!computerSelection) {
+//         //     throw Error('Cannot get computer selection!\n');
+//         // }       
+
+//         // temp = playRound(playerSelection, computerSelection);
+
+//         //add points 
+//         if (temp === 'tie') {
+//             console.log(`Round ${countRound}: It's a Tie!`);
+//         } else if (temp === 'player') {
+//             console.log(`Round ${countRound}: You Win! ${playerSelection} beats ${computerSelection}\n`);
+//             playerPoints++;
+//         } else if (temp === 'comp') {
+//             console.log(`Round ${countRound}: You Lose! ${playerSelection} is defeated by ${computerSelection}\n`);
+//             compPoints++;
+//         }
+//         countRound++;
+//     }
+
+//     //after 5 times, display winner
+//     if (playerPoints === compPoints) {
+//         console.log(`It's a Tie! ${playerPoints}-${compPoints}`);
+//     } else if (playerPoints > compPoints) {
+//         console.log(`Game Ended: You Win! ${playerPoints}-${compPoints}`);
+//     } else if (compPoints > playerPoints) {
+//         console.log(`Game Ended: You Lose! ${playerPoints}-${compPoints}`);
+//     }
+//     return;
+// }
+
+    //listen button click for rock, paper, scissors individually
+    //get comp selection
+    //playRound()
+    //display each round result
+    //round++
+    //after 5 rounds,
+    //display final result
+
+const rockButton = document.querySelector('.rock');
+const paperButton = document.querySelector('.paper');
+const scissorsButton = document.querySelector('.scissors');
+let countRound = 1;
+let playerScore = 0;
+let compScore = 0;
+
+console.log("Let's play 5 rounds of Rock Paper Scissors!");
+
+rockButton.addEventListener('click', () => {
+    const playerSelection = rockButton.name;
+    game(playerSelection);
+});
+
+paperButton.addEventListener('click', () => {
+    const playerSelection = paperButton.name;
+    game(playerSelection);
+});
+scissorsButton.addEventListener('click', () => {
+    const playerSelection = scissorsButton.name;
+    game(playerSelection);
+});
+
+function game(playerSelection) {
     let computerSelection;
     let playerPoints = 0;
     let compPoints = 0;
-    let temp;
-    let countRound = 1;
+    let result;
 
-    for (let i = 0; i < 5; i++) {
-        //get user choice (Rock/Paper/Scissors)
-        do {
-            playerSelection = prompt("Choose either Rock, Paper or Scissors: ").toLowerCase();
-        } while (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors');
+    //get comp selection
+    computerSelection = getComputerChoice();
+    if (!computerSelection) {
+        throw Error('Cannot get computer selection!\n');
+    }      
 
-        //get computer choice
-        computerSelection = getComputerChoice();
-        if (!computerSelection) {
-            throw Error('Cannot get computer selection!\n');
-        }       
+    //playRound()
+    result = playRound(playerSelection, computerSelection);
 
-        temp = playRound(playerSelection, computerSelection);
+    //display each round result
+    updateScore(result, playerSelection, computerSelection);
 
-        //add points 
-        if (temp === 'tie') {
-            console.log(`Round ${countRound}: It's a Tie!`);
-        } else if (temp === 'player') {
-            console.log(`Round ${countRound}: You Win! ${playerSelection} beats ${computerSelection}\n`);
-            playerPoints++;
-        } else if (temp === 'comp') {
-            console.log(`Round ${countRound}: You Lose! ${playerSelection} is defeated by ${computerSelection}\n`);
-            compPoints++;
-        }
-        countRound++;
-    }
-
-    //after 5 times, display winner
-    if (playerPoints === compPoints) {
-        console.log(`It's a Tie! ${playerPoints}-${compPoints}`);
-    } else if (playerPoints > compPoints) {
-        console.log(`Game Ended: You Win! ${playerPoints}-${compPoints}`);
-    } else if (compPoints > playerPoints) {
-        console.log(`Game Ended: You Lose! ${playerPoints}-${compPoints}`);
-    }
-    return;
+    //round++
+    //after 5 rounds,
+    //display final result
 }
 
-//queryselectall buttons
-//use forEach to access all node array
-//use eventListener to check when button is click
-//playRound() with comp
-//create new div to display result on new function
-console.log("Let's play 5 rounds of Rock Paper Scissors!");
+function updateScore(result, playerSelection, computerSelection) {
+    const playerScoreContainer = document.querySelector('.playerScore');
+    const compScoreContainer = document.querySelector('.compScore');
+    const resultContainer = document.querySelector('.result');
+    let textUpdate;
 
-let playerSelection = document.querySelectorAll('.button');
+    console.log(result);
+    if (result === 'tie') {
+        textUpdate = `Round ${countRound}: It's a Tie!`
+    } else if (result === 'player') {
+        playerScoreContainer.innerHTML = ++playerScore;
+        textUpdate = `Round ${countRound}: You Win! ${playerSelection} beats ${computerSelection}\n`;
+        resultContainer.innerHTML = textUpdate;
+    } else if (result === 'comp') {
+        compScoreContainer.innerHTML = ++compScore;
+        textUpdate = `Round ${countRound}: You Lose! ${playerSelection} is defeated by ${computerSelection}\n`;
+    }
 
-playerSelection.forEach(button => {
-    button.addEventListener('click', () => {
-        let result = playRound(button.name, getComputerChoice());
-        displayRound(result);
-    });
-});
+    resultContainer.innerHTML = textUpdate;
 
+
+
+
+
+
+}
 
 function displayRound(result) {
     let container = document.querySelector('.body');
