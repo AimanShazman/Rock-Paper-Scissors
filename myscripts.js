@@ -138,8 +138,6 @@ scissorsButton.addEventListener('click', () => {
 
 function game(playerSelection) {
     let computerSelection;
-    let playerPoints = 0;
-    let compPoints = 0;
     let result;
 
     //get comp selection
@@ -154,9 +152,26 @@ function game(playerSelection) {
     //display each round result
     updateScore(result, playerSelection, computerSelection);
 
-    //round++
-    //after 5 rounds,
-    //display final result
+    //update Round
+    updateRound();
+
+    //after collect 5 points, end game
+    if (playerScore === 5 || compScore === 5) {
+        gameFinish();
+    }
+
+}
+
+function gameFinish() {
+    
+    const resultContainer = document.querySelector('.result');
+
+    if (playerScore === 5) {
+        resultContainer.innerHTML = 'Game Ended! You Win!';
+    } else if (compScore === 5) {
+        resultContainer.innerHTML = 'Game Ended! You Lose!';
+    }
+    
 }
 
 function updateScore(result, playerSelection, computerSelection) {
@@ -178,21 +193,11 @@ function updateScore(result, playerSelection, computerSelection) {
     }
 
     resultContainer.innerHTML = textUpdate;
-
-
-
-
-
-
 }
 
-function displayRound(result) {
-    let container = document.querySelector('.body');
-    let newDiv = document.createElement('div');
-    newDiv.id = 'result';
-    newDiv.textContent = result;
-    console.log(newDiv);
-    container.appendChild(newDiv);
+function updateRound() {
+    countRound++;
 }
+
 
 
