@@ -1,14 +1,50 @@
 body {
     font-family: "Gill Sans", sans-serif;
     background-color: lightblue;
+    padding-top: 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    height: 300px;
+}
+
+.playerScore {
+    display: flex;
+    flex: auto;
+    justify-content: flex-end;
+    font: bold 100px black;
+    margin-right: 20px;
+}
+
+.compScore {
+    display: flex;
+    flex: auto;
+    justify-content: flex-start;
+    font: bold 100px black;
+    margin-left: 20px;
+}
+
+.middleContainer {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    width: 300px;
+}
+
+.result {
+    text-align: center;
+    height: 175px;
+    font: 50px black;
 }
 
 #buttons {
     display: flex;
     flex-flow: row wrap;
+    flex: auto;
     justify-content: center;
     margin-top: 30px;
-    gap: 10px;
+    gap: 30px;
+    flex: auto;
 }
 
 button {
@@ -16,22 +52,18 @@ button {
     margin: 0;
     background: black;
     border: solid 3px black;
-    border-radius: 2em;
-    width: 55px;
-    height: 55px;
+    border-radius: 1em;
+    width: 105px;
+    height: 105px;
     overflow: hidden;
 
 }
 
 .button img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
 }
 
-#scoreboard {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    gap: 10px;
-}
+
+
 
