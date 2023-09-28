@@ -3,18 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Page Title</title>
+  <link rel="stylesheet" href="style.css">
   
 </head>
 
 <body class="body">
-  <!-- create 3 button, 1 for each selection -->
 
-  <button class="button rock" name="rock">Rock</button>
-  <button class="button paper" name="paper">Paper</button>
-  <button class="button scissors" name="scissors">Scissors</button>
+  <div id="buttons">
+    <button class="button rock" name="rock">
+      <img src="./pictures/rock.png" alt="a rock image">
+    </button>
 
+    <button class="button paper" name="paper">
+      <img src="./pictures/paper.png" alt="a paper image">
+    </button>
+    
+    <button class="button scissors" name="scissors">
+      <img src="./pictures/scissors.png" alt="a scissors image">
+    </button>
+  </div>
 
-  <!-- empty div for current score and final result -->
   <div id="scoreboard">
     <div class="playerScore">0</div>
     <div class="result"></div>

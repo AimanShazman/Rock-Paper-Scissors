@@ -119,8 +119,6 @@ function updateRound() {
 }
 
 function main() {
-    console.log("Let's play 5 rounds of Rock Paper Scissors!");
-
     rockButton.addEventListener('click', () => game("rock"));
     paperButton.addEventListener('click', () => game("paper"));
     scissorsButton.addEventListener('click', () => game("scissors"));
