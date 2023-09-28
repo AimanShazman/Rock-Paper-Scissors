@@ -2,7 +2,12 @@ const rockButton = document.querySelector('.rock');
 const paperButton = document.querySelector('.paper');
 const scissorsButton = document.querySelector('.scissors');
 const resultContainer = document.querySelector('.result');
+const playerScoreContainer = document.querySelector('.playerScore');
+const compScoreContainer = document.querySelector('.compScore');
+const middleContainer = document.querySelector('.middleContainer');
 const newDiv = document.createElement('div');
+const newButton = document.createElement('button');
+
 let countRound = 1;
 let playerScore = 0;
 let compScore = 0;
@@ -87,16 +92,39 @@ function endGame() {
         resultContainer.innerHTML = 'Game Ended: You Lose!';
     }
 
+    newDiv.style.cssText = "display: flex; justify-content: center;"
+    newDiv.classList.add('newGameButton');
+    newButton.style.cssText = "height: 70px; width: 70px; background: white;";
+    newButton.textContent = "New game?";
+    newButton.onclick = newGame;
+    newDiv.appendChild(newButton);
+    resultContainer.after(newDiv);
+    
+
     rockButton.setAttribute("disabled", 1);
     paperButton.setAttribute("disabled", 1);
     scissorsButton.setAttribute("disabled", 1);
     
 }
 
+function newGame() {
+    const newGameButton = document.querySelector('.newGameButton');
+
+    playerScore = 0;
+    compScore = 0;
+    countRound = 1;
+
+    playerScoreContainer.innerHTML = playerScore;
+    compScoreContainer.innerHTML = compScore;
+
+    newGameButton.innerHTML = ``;
+    resultContainer.innerHTML = ``;
+    rockButton.removeAttribute("disabled");
+    paperButton.removeAttribute("disabled");
+    scissorsButton.removeAttribute("disabled");
+}
+
 function updateScore(result, playerSelection, computerSelection) {
-    const playerScoreContainer = document.querySelector('.playerScore');
-    const compScoreContainer = document.querySelector('.compScore');
-    const resultContainer = document.querySelector('.result');
     let textUpdate;
 
     console.log(result);
