@@ -105,31 +105,6 @@ function playRound(playerSelection, computerSelection, result) {
 //     return;
 // }
 
-    //listen button click for rock, paper, scissors individually
-    //get comp selection
-    //playRound()
-    //display each round result
-    //round++
-    //after 5 rounds,
-    //display final result
-
-const rockButton = document.querySelector('.rock');
-const paperButton = document.querySelector('.paper');
-const scissorsButton = document.querySelector('.scissors');
-let countRound = 1;
-let playerScore = 0;
-let compScore = 0;
-
-main();
-
-function main() {
-    console.log("Let's play 5 rounds of Rock Paper Scissors!");
-
-    rockButton.addEventListener('click', () => game("rock"));
-    paperButton.addEventListener('click', () => game("paper"));
-    scissorsButton.addEventListener('click', () => game("scissors"));
-}
-
 function game(playerSelection) {
     let computerSelection;
     let result;
@@ -149,24 +124,26 @@ function game(playerSelection) {
     //update Round
     updateRound();
 
+    //start new Game
+    if(playerScore === 5 || compScore === 5) {
+        endGame();
+    }
+
 }
 
-// function gameFinish() {
-    
-//     const resultContainer = document.querySelector('.result');
+function endGame() {
 
-//     if (playerScore === 5) {
-//         resultContainer.innerHTML = 'Game Ended! You Win!';
-//     } else if (compScore === 5) {
-//         resultContainer.innerHTML = 'Game Ended! You Lose!';
-//     }
+    if (playerScore === 5) {
+        resultContainer.innerHTML = 'Game Ended! You Win!';
+    } else if (compScore === 5) {
+        resultContainer.innerHTML = 'Game Ended! You Lose!';
+    }
 
-//     rockButton.removeEventListener('click', () => {
-//         const playerSelection = rockButton.name;
-//         game(playerSelection);
-//     });
+    rockButton.setAttribute("disabled", 1);
+    paperButton.setAttribute("disabled", 1);
+    scissorsButton.setAttribute("disabled", 1);
     
-// }
+}
 
 function updateScore(result, playerSelection, computerSelection) {
     const playerScoreContainer = document.querySelector('.playerScore');
@@ -191,6 +168,25 @@ function updateScore(result, playerSelection, computerSelection) {
 
 function updateRound() {
     countRound++;
+}
+
+const rockButton = document.querySelector('.rock');
+const paperButton = document.querySelector('.paper');
+const scissorsButton = document.querySelector('.scissors');
+const resultContainer = document.querySelector('.result');
+const newDiv = document.createElement('div');
+let countRound = 1;
+let playerScore = 0;
+let compScore = 0;
+
+main();
+
+function main() {
+    console.log("Let's play 5 rounds of Rock Paper Scissors!");
+
+    rockButton.addEventListener('click', () => game("rock"));
+    paperButton.addEventListener('click', () => game("paper"));
+    scissorsButton.addEventListener('click', () => game("scissors"));
 }
 
 
